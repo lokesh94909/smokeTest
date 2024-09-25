@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Country</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Nike-HealthCheck</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav"></ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <h1 class="mt-4">List Countries</h1>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-3">
+                <a th:href="@{/countries/new}" class="btn btn-primary btn-sm mb-3">Add Country</a>
+            </div>
+            <div class="col-lg-3">
+                <a th:href="@{/countries/status}" class="btn btn-primary btn-sm mb-3">Status</a>
+            </div>
+        </div>
+
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Country Name</th>
+                    <th>Description</th>
+                    <th>Url</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="country: ${countries}">
+                    <td th:text="${country.countryName}"></td>
+                    <td th:text="${country.detailDescription}"></td>
+                    <td th:text="${country.url}"></td>
+                    <td>
+                        <a th:href="@{/countries/edit/{id}(id=${country.id})}" class="btn btn-primary">Update</a>
+                        <a th:href="@{/countries/{id}(id=${country.id})}" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
